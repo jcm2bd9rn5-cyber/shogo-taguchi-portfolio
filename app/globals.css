@@ -624,3 +624,36 @@ a { color: inherit; text-decoration: none; }
   .page-wipe, .cursor-follower, .scroll-progress { display: none; }
   .motion-ready [data-reveal] { opacity: 1; transform: none; }
 }
+
+
+/* Focused portfolio layout: showcase work, leave the koi undisturbed. */
+.portfolio-hero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; max-width: 64rem; }
+.portfolio-hero-copy h1 { margin: 0; font-size: clamp(3.8rem, 10vw, 9rem); line-height: 1.05; letter-spacing: -0.055em; }
+.portfolio-eyebrow { margin: 0; font: 600 .72rem var(--font-mono), monospace; letter-spacing: .22em; color: var(--accent-bright); }
+.portfolio-intro { margin: 0 0 1rem; font-size: clamp(1rem, 1.8vw, 1.3rem); color: var(--paper); }
+.portfolio-works { min-height: auto; padding-bottom: clamp(4rem, 8vw, 9rem); background: rgba(5, 3, 3, .94); }
+.portfolio-work-grid { list-style: none; margin: 0; padding: 0 var(--page-x); display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
+.portfolio-work-card { min-width: 0; border: 1px solid var(--line); background: #0d0a0a; transition: border-color .25s ease; }
+.portfolio-work-card:hover, .portfolio-work-card:focus-within { border-color: var(--line-strong); }
+.portfolio-work-card a { display: block; height: 100%; }
+.portfolio-work-card a:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
+.portfolio-work-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #1e1515; }
+.portfolio-work-media img { transition: transform .6s var(--ease-out); }
+.portfolio-work-card:hover img { transform: scale(1.035); }
+.portfolio-work-placeholder { display: grid; place-items: center; background: linear-gradient(140deg,#241512,#100d0c 65%,#251718); }
+.portfolio-work-placeholder span { font-size: clamp(2.4rem,5vw,5.4rem); font-weight: 750; letter-spacing: -.06em; color: #f0e8e3; }
+.portfolio-work-details { position: relative; padding: clamp(1.25rem,2.5vw,2.2rem); }
+.portfolio-work-number { font: .7rem var(--font-mono),monospace; color: var(--accent-bright); }
+.portfolio-work-details h3 { display: flex; justify-content: space-between; gap: 1rem; margin: .6rem 0; font-size: clamp(1.6rem,2.8vw,2.7rem); letter-spacing: -.04em; }
+.portfolio-work-details h3 span { font-size: 1.25rem; font-weight: 400; }
+.portfolio-work-details p { margin: 0 0 1.5rem; font-size: .95rem; line-height: 1.8; color: var(--paper); }
+.portfolio-work-cta { border-bottom: 1px solid var(--accent); padding-bottom: .24rem; font-size: .78rem; }
+@media (max-width: 760px) {
+  .portfolio-work-grid { grid-template-columns: 1fr; }
+  .portfolio-hero-copy h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
+  .portfolio-work-media { aspect-ratio: 16 / 10; }
+  .site-header nav { gap: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-work-media img { transition: none !important; }
+}
