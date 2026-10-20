@@ -657,3 +657,47 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .portfolio-work-media img { transition: none !important; }
 }
+
+
+/* 2026 design refinement — quiet editorial gallery over living koi */
+:root { --ink: #080a0a; --charcoal:#0c1110; --paper:#f1eee8; --white:#fffdf7; --muted:#a8b0a9; --line:rgba(230,238,229,.14); --line-strong:rgba(230,238,229,.3); --accent:#a8d7ba; --accent-bright:#d1f0d2; }
+html,body { background:var(--ink); }
+body { font-family:var(--font-sans),"Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif; }
+.hero { min-height: min(950px,100svh); background:radial-gradient(ellipse at 75% 46%,rgba(22,65,59,.1),transparent 50%),linear-gradient(100deg,rgba(8,10,10,.18),rgba(8,10,10,.05)); }
+.ambient-koi { opacity:.83; }
+.hero-vignette { background:linear-gradient(90deg,rgba(8,10,10,.91) 0%,rgba(8,10,10,.66) 38%,rgba(8,10,10,.04) 82%),linear-gradient(0deg,rgba(8,10,10,.84),transparent 52%); }
+.site-header { padding-top:2rem; }
+.wordmark { border-left:0; padding:0; font-size:.95rem; font-weight:750; letter-spacing:-.035em; }
+.site-header nav { font-size:.86rem; font-weight:550; }
+.portfolio-hero-copy { bottom:clamp(5rem,11vh,9rem); gap:1.45rem; }
+.portfolio-eyebrow { font-size:.74rem; color:var(--accent-bright); letter-spacing:.25em; }
+.portfolio-hero-copy h1 { font-weight:780; font-size:clamp(4.15rem,10.4vw,10.5rem); letter-spacing:-.075em; line-height:1.08; text-wrap:balance; text-shadow:0 3px 36px rgba(0,0,0,.18); }
+.portfolio-intro { color:#d5dfd5; font-size:clamp(1.05rem,1.45vw,1.4rem); letter-spacing:.055em; }
+.hero-link { padding:.7rem 0; font-size:.91rem; font-weight:600; }
+.portfolio-works { background:#0b0f0e; position:relative; padding-top:clamp(5rem,9vw,8rem); }
+.portfolio-works::before { content:""; position:absolute; left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.35; }
+.works-intro { margin-bottom:clamp(2rem,4vw,4rem); }
+.works-intro h2 { font-size:clamp(2.5rem,5vw,5rem); letter-spacing:-.065em; }
+.portfolio-work-grid { gap:clamp(1.5rem,2.7vw,3rem); max-width:1600px; margin-inline:auto; }
+.portfolio-work-card { border-radius:14px; overflow:hidden; background:#101514; border-color:rgba(212,237,219,.12); box-shadow:0 16px 40px rgba(0,0,0,.11); }
+.portfolio-work-card:hover,.portfolio-work-card:focus-within { border-color:rgba(208,240,214,.48); }
+.portfolio-work-media { aspect-ratio:16 / 10; background:#171c1a; }
+.portfolio-work-media::after { position:absolute;inset:0;content:"";pointer-events:none;background:linear-gradient(0deg,rgba(0,0,0,.18),transparent 55%); }
+.portfolio-work-placeholder { background:radial-gradient(circle at 75% 30%,rgba(179,209,163,.22),transparent 38%),radial-gradient(circle at 20% 90%,rgba(53,114,98,.35),transparent 44%),linear-gradient(130deg,#14221e,#0a1110); }
+.portfolio-work-placeholder::before { content:"";position:absolute;inset:8%;border:1px solid rgba(201,232,210,.12);border-radius:9px; }
+.portfolio-work-placeholder span { font-size:clamp(3rem,5.7vw,6.5rem);letter-spacing:-.075em;color:#d4ebd9;text-shadow:0 12px 50px rgba(0,0,0,.2); }
+.portfolio-work-details { padding:clamp(1.5rem,2.5vw,2.5rem); }
+.portfolio-work-details h3 { margin:.85rem 0 .65rem;letter-spacing:-.055em;font-weight:730; }
+.portfolio-work-details p { color:#bdc8c0; min-height:3.1em; }
+.portfolio-work-cta { color:var(--accent-bright);border-color:rgba(208,240,214,.5); }
+.site-footer { background:#080a0a; }
+a:focus-visible { outline:2px solid var(--accent-bright);outline-offset:5px; }
+@media (max-width:760px) {
+ .hero { min-height:85svh; }
+ .hero-vignette { background:linear-gradient(0deg,rgba(8,10,10,.95),rgba(8,10,10,.53) 48%,rgba(8,10,10,.2)); }
+ .portfolio-hero-copy { bottom:clamp(3rem,8vh,5rem); }
+ .portfolio-hero-copy h1 { font-size:clamp(3.8rem,13.5vw,6rem); }
+ .portfolio-works { padding-top:4.2rem; }
+ .portfolio-work-grid { padding-inline:var(--page-x); }
+ .portfolio-work-details p { min-height:0; }
+}
