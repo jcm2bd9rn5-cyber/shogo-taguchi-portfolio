@@ -1,44 +1,38 @@
-import Image from "next/image";
-
 const works = [
   {
     name: "Strive",
     description: "筋トレを記録し、成長を可視化するアプリ。",
     href: "https://strive-lp-xi.vercel.app/",
-    url: "公式サイトを見る",
-    image: "/images/strive-ogp.jpg",
+    url: "strive-lp-xi.vercel.app",
   },
   {
     name: "GuruMeet",
-    description: "みんなでスワイプして、行きたいお店を決めるサービス。",
+    description: "みんなでスワイプして、行きたい店を決めるサービス。",
     href: "https://lp.gurumeet.net/",
-    url: "公式サイトを見る",
-    image: null,
+    url: "lp.gurumeet.net",
   },
 ] as const;
 
 export function SelectedWorks() {
   return (
-    <ol className="portfolio-work-grid" aria-label="制作物一覧">
-      {works.map((work, index) => (
-        <li className="portfolio-work-card" key={work.name}>
-          <a href={work.href} target="_blank" rel="noopener noreferrer" aria-label={`${work.name}の公式サイトを開く`}>
-            <div className={`portfolio-work-media ${work.image ? "" : "portfolio-work-placeholder"}`}>
-              {work.image ? (
-                <Image src={work.image} alt="Striveのアプリ紹介画像" fill sizes="(max-width: 760px) 100vw, 50vw" style={{ objectFit: "cover" }} />
-              ) : (
-                <span aria-hidden="true">GuruMeet</span>
-              )}
-            </div>
-            <div className="portfolio-work-details">
-              <span className="portfolio-work-number">0{index + 1}</span>
-              <h3>{work.name} <span aria-hidden="true">↗</span></h3>
-              <p>{work.description}</p>
-              <span className="portfolio-work-cta">{work.url}</span>
-            </div>
-          </a>
-        </li>
-      ))}
-    </ol>
+    <div className="work-index" data-reveal>
+      <div className="work-index-heading" aria-hidden="true">
+        <span>SELECTED WORKS</span>
+        <span>2025—2026</span>
+      </div>
+      <ol className="work-list" aria-label="制作物一覧">
+        {works.map((work, index) => (
+          <li className="work-item" key={work.name} data-reveal style={{ "--reveal-delay": `${index * 100}ms` } as React.CSSProperties}>
+            <a className="work-link" href={work.href} target="_blank" rel="noreferrer" data-magnetic>
+              <span className="work-number">0{index + 1}</span>
+              <span className="work-name">{work.name}</span>
+              <span className="work-description">{work.description}</span>
+              <span className="work-url">{work.url}</span>
+              <span className="work-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

@@ -4,22 +4,21 @@ import "./globals.css";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://shogo-one.vercel.app";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "田口 将伍 | ポートフォリオ",
-  description: "田口将伍の個人開発ポートフォリオ。StriveとGuruMeetを紹介しています。",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://shogo-taguchi.vercel.app"),
+  title: "田口 将伍 — ポートフォリオ",
+  description: "個人開発をしている田口将伍のポートフォリオ。StriveとGuruMeetを掲載しています。",
   authors: [{ name: "Shogo Taguchi", url: "https://github.com/jcm2bd9rn5-cyber" }],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "田口 将伍 | ポートフォリオ",
-    description: "個人開発の制作物を紹介しています。",
+    title: "田口 将伍 — ポートフォリオ",
+    description: "個人開発をしています。",
     type: "website",
     locale: "ja_JP",
-    siteName: "田口 将伍 | ポートフォリオ",
+    images: [{ url: "/images/strive-ogp.jpg", width: 1200, height: 630, alt: "田口将伍のポートフォリオ" }],
   },
-  twitter: { card: "summary" },
+  twitter: { card: "summary_large_image", title: "田口 将伍 — ポートフォリオ", images: ["/images/strive-ogp.jpg"] },
 };
 
 export const viewport: Viewport = {
@@ -30,5 +29,9 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ja" className={`${sans.variable} ${mono.variable}`}><body>{children}</body></html>;
+  return (
+    <html lang="ja" className={`${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
 }
