@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     title: "田口 将伍 — ポートフォリオ",
-    description: "個人開発をしています。",
+    description: "企画から実装・公開・改善まで取り組む学生エンジニア。StriveとGuruMeetの開発実績を紹介します。",
     type: "website",
     locale: "ja_JP",
     images: [{ url: "/images/strive-ogp.jpg", width: 1200, height: 630, alt: "田口将伍のポートフォリオ" }],
