@@ -9,6 +9,7 @@ export function MotionSystem() {
   useEffect(() => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     root.classList.add("motion-ready");
 
     const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -52,6 +53,7 @@ export function MotionSystem() {
     let currentX = targetX;
     let currentY = targetY;
     let frame = 0;
+    let cursorRunning = false;
 
     const render = () => {
       currentX += (targetX - currentX) * 0.16;
@@ -59,6 +61,16 @@ export function MotionSystem() {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
       }
+      if (Math.abs(targetX - currentX) + Math.abs(targetY - currentY) > 0.2 && !document.hidden) {
+        frame = requestAnimationFrame(render);
+      } else {
+        cursorRunning = false;
+      }
+    };
+
+    const startCursor = () => {
+      if (cursorRunning || document.hidden || reducedMotion.matches || !finePointer.matches) return;
+      cursorRunning = true;
       frame = requestAnimationFrame(render);
     };
 
@@ -66,6 +78,7 @@ export function MotionSystem() {
       targetX = event.clientX;
       targetY = event.clientY;
       cursorRef.current?.classList.add("is-present");
+      startCursor();
     };
 
     const interactiveTargets = Array.from(document.querySelectorAll<HTMLElement>("a, button"));
@@ -93,14 +106,29 @@ export function MotionSystem() {
       requestAnimationFrame(updateProgress);
     };
 
-    if (!reducedMotion.matches) {
-      window.addEventListener("pointermove", onPointerMove, { passive: true });
-      window.addEventListener("scroll", onScroll, { passive: true });
-      frame = requestAnimationFrame(render);
-      updateProgress();
-    } else {
-      revealTargets.forEach((target) => target.classList.add("is-visible"));
-    }
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(frame);
+        cursorRunning = false;
+      } else if (!reducedMotion.matches) {
+        updateProgress();
+      }
+    };
+    const onMotionChange = () => {
+      if (reducedMotion.matches) {
+        cancelAnimationFrame(frame);
+        cursorRunning = false;
+        cursorRef.current?.classList.remove("is-present");
+        revealTargets.forEach((target) => target.classList.add("is-visible"));
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (finePointer.matches) window.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    reducedMotion.addEventListener("change", onMotionChange);
+    updateProgress();
+    if (reducedMotion.matches) onMotionChange();
 
     return () => {
       observer.disconnect();
@@ -108,6 +136,8 @@ export function MotionSystem() {
       cursorCleanups.forEach((cleanup) => cleanup());
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      reducedMotion.removeEventListener("change", onMotionChange);
       cancelAnimationFrame(frame);
       root.classList.remove("motion-ready");
     };
