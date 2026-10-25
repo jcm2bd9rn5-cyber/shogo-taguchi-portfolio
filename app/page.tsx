@@ -36,9 +36,9 @@ export default function Home() {
 
           <div className="hero-copy hero-profile-layout">
             <div className="hero-identity">
-              <p className="hero-kicker"><span>PROFILE / 2005—</span></p>
+              <p className="hero-kicker"><span>PORTFOLIO / 2026</span></p>
               <div className="hero-title-mask">
-                <h1 id="hero-title">田口 将伍</h1>
+                <h1 id="hero-title">田口 <span>将伍</span></h1>
               </div>
               <a className="hero-link u373-link" href="#works" data-magnetic>制作物を見る <span aria-hidden="true">↓</span></a>
             </div>
@@ -70,7 +70,7 @@ export default function Home() {
           <div className="works-intro" data-reveal>
             <span>01</span>
             <h2 id="works-title">制作物</h2>
-            <p>つくったもの。</p>
+            <p>Selected projects / 2025—2026</p>
           </div>
           <SelectedWorks />
         </section>
@@ -94,7 +94,7 @@ export default function Home() {
         <div className="footer-meta">
           <span>田口 将伍</span>
           <a className="u373-link" href="https://github.com/jcm2bd9rn5-cyber" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <span>© 2026</span>
+          <a className="footer-top u373-link" href="#top">BACK TO TOP ↑</a>
         </div>
       </footer>
     </>
