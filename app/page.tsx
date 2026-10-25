@@ -46,7 +46,7 @@ export default function Home() {
               <p className="hero-profile-lead">東京電機大学 情報システム工学科に在籍する学生エンジニアです。</p>
               <p>身近な課題を起点に、企画・設計・実装・公開・改善まで取り組んでいます。</p>
               <dl className="hero-facts">
-                <div><dt>BORN</dt><dd>2005.09.16</dd></div>
+                <div><dt>ROLE</dt><dd>Student Developer</dd></div>
                 <div><dt>BASE</dt><dd>Tokyo</dd></div>
                 <div><dt>FOCUS</dt><dd>Mobile Product</dd></div>
                 <div><dt>GRADUATION</dt><dd>2028</dd></div>

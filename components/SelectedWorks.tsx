@@ -1,15 +1,17 @@
 const works = [
   {
     name: "Strive",
-    description: "筋トレを記録し、成長を可視化するアプリ。",
+    description: "筋トレの記録から成長の可視化まで。自ら企画・開発し、App Storeで公開。",
     href: "https://strive-lp-xi.vercel.app/",
-    url: "strive-lp-xi.vercel.app",
+    url: "OFFICIAL SITE",
+    tags: ["Flutter", "Firebase", "App Store公開"],
   },
   {
     name: "GuruMeet",
-    description: "みんなでスワイプして、行きたい店を決めるサービス。",
+    description: "みんなでスワイプして行きたい店を決める、チーム開発のサービス。",
     href: "https://lp.gurumeet.net/",
-    url: "lp.gurumeet.net",
+    url: "OFFICIAL SITE",
+    tags: ["Flutter", "FastAPI", "ハッカソン受賞"],
   },
 ] as const;
 
@@ -23,10 +25,15 @@ export function SelectedWorks() {
       <ol className="work-list" aria-label="制作物一覧">
         {works.map((work, index) => (
           <li className="work-item" key={work.name} data-reveal style={{ "--reveal-delay": `${index * 100}ms` } as React.CSSProperties}>
-            <a className="work-link" href={work.href} target="_blank" rel="noreferrer" data-magnetic>
+            <a className="work-link" href={work.href} target="_blank" rel="noopener noreferrer" data-magnetic aria-label={`${work.name} の公式サイトを開く（新しいタブ）`}>
               <span className="work-number">0{index + 1}</span>
               <span className="work-name">{work.name}</span>
-              <span className="work-description">{work.description}</span>
+              <span className="work-details">
+                <span className="work-description">{work.description}</span>
+                <span className="work-tags" aria-label="技術と実績">
+                  {work.tags.map((tag) => <span className="work-tag" key={tag}>{tag}</span>)}
+                </span>
+              </span>
               <span className="work-url">{work.url}</span>
               <span className="work-arrow" aria-hidden="true">↗</span>
             </a>
