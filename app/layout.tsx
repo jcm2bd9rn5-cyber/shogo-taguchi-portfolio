@@ -6,9 +6,9 @@ const sans = Geist({ subsets: ["latin"], variable: "--font-sans", display: "swap
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://shogo-taguchi.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://shogo-one.vercel.app"),
   title: "田口 将伍 — ポートフォリオ",
-  description: "個人開発をしている田口将伍のポートフォリオ。StriveとGuruMeetを掲載しています。",
+  description: "Flutter・SwiftUIを中心に、企画・開発・公開・改善まで手がける田口将伍のポートフォリオ。StriveとGuruMeetの制作実績を紹介。",
   authors: [{ name: "Shogo Taguchi", url: "https://github.com/jcm2bd9rn5-cyber" }],
   alternates: { canonical: "/" },
   openGraph: {
