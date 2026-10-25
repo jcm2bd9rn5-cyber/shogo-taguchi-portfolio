@@ -26,7 +26,7 @@ export function SelectedWorks() {
       </div>
       <ol className="work-list" aria-label="制作物一覧">
         {works.map((work, index) => (
-          <li className="work-item" key={work.name} data-reveal style={{ "--reveal-delay": `${index * 100}ms` } as React.CSSProperties}>
+          <li className="work-item" data-work={work.name} key={work.name} data-reveal style={{ "--reveal-delay": `${index * 100}ms` } as React.CSSProperties}>
             <a className="work-link" href={work.href} target="_blank" rel="noopener noreferrer" data-magnetic aria-label={`${work.name} の公式サイトを開く（新しいタブ）`}>
               <span className="work-number">0{index + 1}</span>
               <span className="work-name-wrap"><span className="work-category">{work.category}</span><span className="work-name">{work.name}</span></span>
@@ -37,7 +37,7 @@ export function SelectedWorks() {
                 </span>
               </span>
               <span className="work-url">{work.url}</span>
-              <span className="work-arrow" aria-hidden="true">↗</span>
+              <span className="work-action" aria-hidden="true"><span>EXPLORE</span><span className="work-arrow">↗</span></span>
             </a>
           </li>
         ))}
