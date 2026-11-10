@@ -8,17 +8,22 @@ const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://shogo-one.vercel.app"),
   title: "田口 将伍 — ポートフォリオ",
-  description: "Flutter・SwiftUIを中心に、企画・開発・公開・改善まで手がける田口将伍のポートフォリオ。StriveとGuruMeetの制作実績を紹介。",
+  description: "Flutter / SwiftUIのモバイル開発からFastAPI・PostgreSQL・Grounded RAGまで、企画・実装・公開に取り組む田口将伍のポートフォリオ。",
   authors: [{ name: "Shogo Taguchi", url: "https://github.com/jcm2bd9rn5-cyber" }],
   alternates: { canonical: "/" },
   openGraph: {
     title: "田口 将伍 — ポートフォリオ",
-    description: "個人開発をしています。",
+    description: "モバイルアプリとAI・バックエンドを横断して個人開発・チーム開発に取り組んでいます。",
     type: "website",
     locale: "ja_JP",
     images: [{ url: "/images/strive-ogp.jpg", width: 1200, height: 630, alt: "田口将伍のポートフォリオ" }],
   },
-  twitter: { card: "summary_large_image", title: "田口 将伍 — ポートフォリオ", images: ["/images/strive-ogp.jpg"] },
+  twitter: {
+    card: "summary_large_image",
+    title: "田口 将伍 — ポートフォリオ",
+    description: "モバイルアプリとAI・バックエンドを横断して開発しています。",
+    images: ["/images/strive-ogp.jpg"],
+  },
 };
 
 export const viewport: Viewport = {
