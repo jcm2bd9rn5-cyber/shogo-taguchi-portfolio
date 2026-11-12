@@ -41,7 +41,7 @@ const groups: ReadonlyArray<{ label: string; items: ReadonlyArray<Technology> }>
 ];
 
 function SkillIcon({ technology }: { technology: Technology }) {
-  if (technology.asset) {
+  if (typeof technology.asset === "string") {
     return (
       <img
         src={"/skill-icons/" + technology.asset}
