@@ -35,3 +35,11 @@ Brand glyphs in the technology stack are rendered from Simple Icons. Product nam
 
 - Strive service description: publicly distributed on https://strive-lp-xi.vercel.app/
 - GuruMeet service description: publicly distributed on https://lp.gurumeet.net/
+
+## Skill Icons
+
+- Source: https://github.com/tandpfun/skill-icons
+- Copyright (c) 2022 tandpfun
+- License: MIT (full license at `public/skill-icons/LICENSE`)
+- Usage: the SVGs in `public/skill-icons/` are self-hosted for technology cards. Original SVG artwork is retained without modification.
+- Note: SwiftUI uses the Swift glyph because Skill Icons does not provide a dedicated SwiftUI icon; RevenueCat uses the existing Simple Icons brand glyph.

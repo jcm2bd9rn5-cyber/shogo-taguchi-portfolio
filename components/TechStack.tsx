@@ -1,64 +1,63 @@
 import type { SimpleIcon } from "simple-icons";
-import {
-  siApple,
-  siDart,
-  siFastapi,
-  siFirebase,
-  siFlutter,
-  siGithub,
-  siJavascript,
-  siNextdotjs,
-  siPostgresql,
-  siPython,
-  siReact,
-  siRevenuecat,
-  siSwift,
-  siTypescript,
-  siVercel,
-} from "simple-icons";
+import { siRevenuecat } from "simple-icons";
 
-type Technology = {
-  name: string;
-  icon: SimpleIcon;
-};
+type Technology =
+  | { name: string; asset: string; brand?: never }
+  | { name: string; brand: SimpleIcon; asset?: never };
 
 const groups: ReadonlyArray<{ label: string; items: ReadonlyArray<Technology> }> = [
   {
-    label: "LANGUAGE",
+    label: "LANGUAGES",
     items: [
-      { name: "Dart", icon: siDart },
-      { name: "Swift", icon: siSwift },
-      { name: "TypeScript", icon: siTypescript },
-      { name: "Python", icon: siPython },
-      { name: "JavaScript", icon: siJavascript },
+      { name: "Dart", asset: "Dart-Dark.svg" },
+      { name: "Swift", asset: "Swift.svg" },
+      { name: "TypeScript", asset: "TypeScript.svg" },
+      { name: "Python", asset: "Python-Dark.svg" },
+      { name: "Java", asset: "Java-Dark.svg" },
+      { name: "JavaScript", asset: "JavaScript.svg" },
     ],
   },
   {
-    label: "LIBRARY / FRAMEWORK",
+    label: "FRAMEWORKS",
     items: [
-      { name: "Flutter", icon: siFlutter },
-      { name: "SwiftUI", icon: siApple },
-      { name: "React", icon: siReact },
-      { name: "Next.js", icon: siNextdotjs },
-      { name: "FastAPI", icon: siFastapi },
+      { name: "Flutter", asset: "Flutter-Dark.svg" },
+      { name: "SwiftUI", asset: "Swift.svg" },
+      { name: "React", asset: "React-Dark.svg" },
+      { name: "Next.js", asset: "NextJS-Dark.svg" },
+      { name: "FastAPI", asset: "FastAPI.svg" },
     ],
   },
   {
-    label: "OTHER",
+    label: "TOOLS / PLATFORM",
     items: [
-      { name: "Firebase", icon: siFirebase },
-      { name: "PostgreSQL", icon: siPostgresql },
-      { name: "RevenueCat", icon: siRevenuecat },
-      { name: "GitHub", icon: siGithub },
-      { name: "Vercel", icon: siVercel },
+      { name: "Firebase", asset: "Firebase-Dark.svg" },
+      { name: "PostgreSQL", asset: "PostgreSQL-Dark.svg" },
+      { name: "Docker", asset: "Docker.svg" },
+      { name: "RevenueCat", brand: siRevenuecat },
+      { name: "GitHub", asset: "Github-Dark.svg" },
+      { name: "Vercel", asset: "Vercel-Dark.svg" },
     ],
   },
-] as const;
+];
 
-function BrandIcon({ icon }: { icon: SimpleIcon }) {
+function SkillIcon({ technology }: { technology: Technology }) {
+  if (typeof technology.asset === "string") {
+    return (
+      <img
+        src={"/skill-icons/" + technology.asset}
+        alt=""
+        width={48}
+        height={48}
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
-    <svg viewBox="0 0 24 24" role="img" aria-label={`${icon.title} icon`}>
-      <path d={icon.path} />
+    <svg viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+      <path d={technology.brand.path} fill={"#" + technology.brand.hex} />
     </svg>
   );
 }
@@ -70,22 +69,22 @@ export function TechStack() {
         <section
           className="tech-group"
           key={group.label}
-          aria-labelledby={`tech-group-${groupIndex}`}
+          aria-labelledby={"tech-group-" + groupIndex}
           data-reveal
         >
           <div className="tech-group-heading">
             <span>0{groupIndex + 1}</span>
-            <h3 id={`tech-group-${groupIndex}`}>{group.label}</h3>
+            <h3 id={"tech-group-" + groupIndex}>{group.label}</h3>
           </div>
           <ul className="tech-grid">
             {group.items.map((technology, itemIndex) => (
               <li
                 key={technology.name}
                 data-reveal
-                style={{ "--reveal-delay": `${itemIndex * 70}ms` } as React.CSSProperties}
+                style={{ "--reveal-delay": itemIndex * 55 + "ms" } as React.CSSProperties}
               >
-                <BrandIcon icon={technology.icon} />
-                <span>{technology.name}</span>
+                <span className="tech-icon-wrap"><SkillIcon technology={technology} /></span>
+                <span className="tech-name">{technology.name}</span>
               </li>
             ))}
           </ul>
